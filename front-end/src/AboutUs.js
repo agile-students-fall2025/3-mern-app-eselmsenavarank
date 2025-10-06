@@ -1,14 +1,34 @@
+import { useEffect, useState } from 'react'
 
-const AboutUs = props => {
+export default function AboutUs() {
+  const [data, setData] = useState(null)
+  const [error, setError] = useState('')
 
-    return(
-        <>
-        <h2>Hello! My name is Eslem.</h2>
-        <p>
-            I am majoring in CS and this is my last year at school! Previously I took Applied Internet Technologies with Prof.Versoza and I loved it. 
-            During that class we mostly focused on the technical side of bulding a software. Now I wamt to more focus of professional side of the work. 
-            Therefore I am so excited about this class. My other passion is music and I love learning how to play musical instruments. I can play around 5 different instruments now!
-        </p>
-        </>
-    )
+  useEffect(() => {
+    (async () => {
+      try 
+        {
+            const res = await fetch('http://localhost:5002/about_us')
+            if (!res.ok) throw new Error(`HTTP ${res.status}`)
+            setData(await res.json())
+            
+        } 
+        catch (e) {
+            setError(e.message || 'Error')
+        }
+    })()
+  }, [])
+
+  if (error) return <p>Error: {error}</p>
+  if (!data) return <p>Loading...</p>
+
+  return (
+    <>
+     {data.imageUrl && <img src={data.imageUrl} alt="About us" />}
+      <h2>{data.title}</h2>
+      <p>{data.content}</p>
+    </>
+  )
 }
+
+
