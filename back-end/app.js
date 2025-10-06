@@ -78,5 +78,18 @@ app.post('/messages/save', async (req, res) => {
   }
 })
 
+app.get('/about_us', async (req, res) => {
+  
+  const aboutData = {
+    title: "Hello! My name is Eslem.",
+    content: "I am majoring in CS and this is my last year at school! I am 23 and  form Istanbul. Previously I took Applied Internet Technologies with Prof.Versoza and I loved it. During that class we mostly focused on the technical side of building a software. Now I want to more focus of professional side of the work. Therefore I am so excited about this class. My other passion is music and I love learning how to play musical instruments. I can play around 5 different instruments so far! I also enjot travelling and volunteering of community service. I sometimes volunteer at 'God's Love We Deliver' for food packing. Other than that. I work as a QA Automation Engineer Intern at Centene part-time. I am responsible with improving automation of the medical claim processing through a company tool Centest. Yepp that's me, nice to meeting you!",
+    imageUrl: "https://media.licdn.com/dms/image/v2/D4D03AQGPiyNi0tPPYw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1727635987947?e=1762387200&v=beta&t=R-xv5Hju6sVyq8xG_Y4DMNwEmSKhLQuUhwBgP4FW3Vk" 
+  }
+  //console.log('Sending data:', aboutData) 
+  res.json(aboutData)
+
+
+})
+
 // export the express app we created to make it available to other modules
 module.exports = app // CommonJS export style!
